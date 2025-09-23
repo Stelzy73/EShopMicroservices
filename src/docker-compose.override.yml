@@ -1,12 +1,12 @@
 version: '3.4'
 
 services:
-  catalogdb:
-    container_name: catalogdb
+  CatalogDb:
+    container_name: CatalogDb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=catalogdb
+      - POSTGRES_DB=CatalogDb
     restart: always
     ports:
       - "5432:5432"

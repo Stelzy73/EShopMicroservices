@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{5BC9CC59-9236-4F6D-A913-EB1742D1F5B0}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Users\StelznerAndreas\Downloads\EShopMicroservices.postman_collection.json = ..\..\..\..\Users\StelznerAndreas\Downloads\EShopMicroservices.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
