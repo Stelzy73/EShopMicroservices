@@ -15,9 +15,6 @@ builder.Services.AddMarten(options =>
 
 var app = builder.Build();
 
-
-
-
 // After Building Web Application
 
 // Configure the HTTP request pipeline.
