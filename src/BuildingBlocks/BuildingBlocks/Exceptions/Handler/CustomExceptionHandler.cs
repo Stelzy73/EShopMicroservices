@@ -12,7 +12,35 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IE
     {
         logger.LogError("Error Message: {exceptionMessage}, Time of occurence: {time}", exception.Message, DateTime.UtcNow);
 
-        var statusCode = exception switch
+        var statusCode = GetStatusCode(exception, context);
+        var problemDetails = GetProblemDetails(exception, statusCode, context);
+
+        await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken: cancellationToken);
+        return true;
+    }
+
+    private static ProblemDetails GetProblemDetails(Exception exception, int? statusCode, HttpContext context)
+    {
+        var problemDetails = new ProblemDetails
+        {
+            Title = exception.Message,
+            Detail = exception.GetType().Name,
+            Status = statusCode,
+            Instance = context.Request.Path
+        };
+        problemDetails.Extensions.Add("traceId", context.TraceIdentifier);
+
+        if (exception is ValidationException validationException)
+        {
+            problemDetails.Extensions.Add("ValidationErrors", validationException.Errors);
+        }
+
+        return problemDetails;
+    }
+
+    private static int? GetStatusCode(Exception exception, HttpContext context)
+    {
+        return exception switch
         {
             InternalServerException =>
             (
@@ -35,23 +63,5 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IE
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError
             )
         };
-
-        var problemDetails = new ProblemDetails
-        {
-            Title = exception.Message,
-            Detail = exception.GetType().Name,
-            Status = statusCode,
-            Instance = context.Request.Path
-        };
-
-        problemDetails.Extensions.Add("traceId", context.TraceIdentifier);
-
-        if (exception is ValidationException validationException)
-        {
-            problemDetails.Extensions.Add("ValidationErrors", validationException.Errors);
-        }
-
-        await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken: cancellationToken);
-        return true;
     }
 }
