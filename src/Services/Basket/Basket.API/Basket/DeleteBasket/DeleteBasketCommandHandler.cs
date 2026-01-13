@@ -4,12 +4,11 @@ public record DeleteBasketCommand(string UserName) : ICommand<DeleteBasketResult
 
 public record DeleteBasketResult(bool IsSuccess);
 
-public class DeleteBasketCommandHandler : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
+public class DeleteBasketCommandHandler(IBasketRepository repository) : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
 {
     public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken cancellationToken)
     {
-        // Todo: Delete the basket from the database and cache
-        // session.Delete<ShoppingCart>(command.UserName);
+        await repository.DeleteBasket(command.UserName, cancellationToken);
         
         return new DeleteBasketResult(true);
     }

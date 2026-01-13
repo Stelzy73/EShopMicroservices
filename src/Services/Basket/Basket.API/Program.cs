@@ -23,6 +23,10 @@ builder.Services.AddMarten(options =>
     options.Schema.For<ShoppingCart>().Identity(x => x.UserName);
 }).UseLightweightSessions();
 
+// Basket Repository
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
+
 #endregion
 
 
