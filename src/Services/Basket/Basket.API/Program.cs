@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+#region Add services to the container.
 
 // Carter (Minimal API)
 builder.Services.AddCarter();
@@ -15,11 +15,26 @@ builder.Services.AddMediatR(config =>
 });
 builder.Services.AddValidatorsFromAssembly(assembly);
 
+// Marten (PostgreSQL Document DB)
+builder.Services.AddMarten(options =>
+{
+    options.Connection(builder.Configuration.GetConnectionString("Database")!);
+    // Indentify the document by UserName property
+    options.Schema.For<ShoppingCart>().Identity(x => x.UserName);
+}).UseLightweightSessions();
+
+#endregion
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+#region Configure the HTTP request pipeline.
 
 app.MapCarter();
+
+#endregion
+
 
 app.Run();
  
