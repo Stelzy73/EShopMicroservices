@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{5BC9
 		..\..\..\..\Users\StelznerAndreas\Downloads\EShopMicroservices.postman_collection.json = ..\..\..\..\Users\StelznerAndreas\Downloads\EShopMicroservices.postman_collection.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{D5ADACF6-BC5B-4A52-BFE2-A4D0AFBCB5F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.API", "Services\Basket\Basket.API\Basket.API.csproj", "{72652D88-41B5-4778-9D32-13E7448FD37D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,10 @@ Global
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72652D88-41B5-4778-9D32-13E7448FD37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72652D88-41B5-4778-9D32-13E7448FD37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72652D88-41B5-4778-9D32-13E7448FD37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72652D88-41B5-4778-9D32-13E7448FD37D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,8 @@ Global
 		{BE03A7A8-6406-440C-96D5-A32D039B6F8B} = {D14337A6-6CDF-44EF-8AFE-975BA334E214}
 		{C50878FF-6A69-4CE7-B5BF-00F75CBF6BCA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{A501051E-BCD9-401E-82AC-FA00FABB96F9} = {C50878FF-6A69-4CE7-B5BF-00F75CBF6BCA}
+		{D5ADACF6-BC5B-4A52-BFE2-A4D0AFBCB5F8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{72652D88-41B5-4778-9D32-13E7448FD37D} = {D5ADACF6-BC5B-4A52-BFE2-A4D0AFBCB5F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84DB9754-E07A-4A6C-B458-BE66EC0BE515}
