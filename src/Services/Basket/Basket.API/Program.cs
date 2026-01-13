@@ -1,4 +1,3 @@
-using BuildingBlocks.Exceptions.Handler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,11 +46,13 @@ builder.Services.AddStackExchangeRedisCache(options =>
 // Exceptions
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+// Health Checks
+builder.Services.AddHealthChecks().AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
+builder.Services.AddHealthChecks().AddRedis(builder.Configuration.GetConnectionString("Redis")!);
+
 #endregion
 
-
 var app = builder.Build();
-
 
 #region Configure the HTTP request pipeline.
 
@@ -60,6 +61,12 @@ app.MapCarter();
 
 // Exception Handling
 app.UseExceptionHandler(options => { });
+
+// Health Checks
+app.UseHealthChecks("/health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 #endregion
 
