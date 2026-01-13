@@ -2,6 +2,9 @@
 
 namespace Basket.API.Data;
 
+/// <summary>
+/// Standard implementation of IBasketRepository using Marten
+/// </summary>
 public class BasketRepository(IDocumentSession session) 
     : IBasketRepository
 {

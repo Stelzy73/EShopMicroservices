@@ -27,6 +27,22 @@ builder.Services.AddMarten(options =>
 
 // Basket Repository
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+// Möglich dank Scrutor
+// Das Decorator Pattern erlaubt es, zusätzliche Funktionalität zu einem bestehenden Objekt hinzuzufügen, ohne dessen Interface zu ändern:
+/*
+ Das Decorator Pattern mag auf den ersten Blick "komplizierter" aussehen, aber es bietet:
+   •	Saubere Trennung der Verantwortlichkeiten
+   •	Hohe Flexibilität in der Konfiguration
+   •	Bessere Testbarkeit
+   •	Einfache Erweiterbarkeit
+   •	Wartbarkeit durch klare Struktur
+   In größeren Anwendungen zahlt sich diese Struktur definitiv aus, auch wenn sie anfangs etwas mehr Code bedeutet.   
+ */
+builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis")!;
+});
 
 // Exceptions
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
@@ -39,8 +55,10 @@ var app = builder.Build();
 
 #region Configure the HTTP request pipeline.
 
+// Carter (Minimal API)
 app.MapCarter();
 
+// Exception Handling
 app.UseExceptionHandler(options => { });
 
 #endregion
