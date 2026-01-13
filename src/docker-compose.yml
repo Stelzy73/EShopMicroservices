@@ -1,6 +1,10 @@
 version: '3.4' 
 
 services:
+  
+  BasketDb:
+    image: postgres
+
   CatalogDb:
     image: postgres
 
@@ -12,4 +16,5 @@ services:
 
 volumes:
   postgres_catalog:
+  postgres_basket:
 
