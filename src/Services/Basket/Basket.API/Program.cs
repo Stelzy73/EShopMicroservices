@@ -1,3 +1,5 @@
+using BuildingBlocks.Exceptions.Handler;
+
 var builder = WebApplication.CreateBuilder(args);
 
 #region Add services to the container.
@@ -26,6 +28,8 @@ builder.Services.AddMarten(options =>
 // Basket Repository
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
+// Exceptions
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 #endregion
 
@@ -36,6 +40,8 @@ var app = builder.Build();
 #region Configure the HTTP request pipeline.
 
 app.MapCarter();
+
+app.UseExceptionHandler(options => { });
 
 #endregion
 
