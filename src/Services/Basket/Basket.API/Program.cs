@@ -65,6 +65,7 @@ app.UseExceptionHandler(options => { });
 // Health Checks
 app.UseHealthChecks("/health", new HealthCheckOptions
 {
+    // Für JSON-Ausgabe im HealthCheck-UI-Format
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
