@@ -21,22 +21,22 @@ message GetDiscountRequest
 
 message CreateDiscountRequest
 {
-	string coupon = 1;
+	CouponModel coupon = 1;
 }
 
 message UpdateDiscountRequest
 {
-	string coupon = 1;
+	CouponModel coupon = 1;
 }
 
 message DeleteDiscountRequest
 {
-	string coupon = 1;
+	string productName = 1;
 }
 
 message DeleteDiscountResponse
 {
-	bool success coupon = 1;
+	bool success = 1;
 }
 
 message CouponModel
